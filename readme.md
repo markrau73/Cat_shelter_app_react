@@ -1,5 +1,5 @@
-# Football database
+# Cat shelter app
 
-Simple database about football competition, teams and players bulit with React.
+Simple app with cats adoption database bulit with React.
 
 Work in progress...
