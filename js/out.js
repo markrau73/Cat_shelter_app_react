@@ -9763,6 +9763,8 @@ module.exports = __webpack_require__(18);
 "use strict";
 
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(82);
 
 var _react2 = _interopRequireDefault(_react);
@@ -9773,13 +9775,198 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 document.addEventListener('DOMContentLoaded', function () {
 
-    _reactDom2.default.render(_react2.default.createElement(
-        'h1',
-        null,
-        'Hello, World!'
-    ), document.getElementById('container'));
+  var kitties = [{ category: "male", age: "4", likesKids: true, name: "Fidel Catstro" }, { category: "male", age: "9", likesKids: true, name: "Hairy Potter" }, { category: "male", age: "2", likesKids: false, name: "Grumpy" }, { category: "female", age: "1", likesKids: true, name: "Jude Paw" }, { category: "female", age: "2", likesKids: false, name: "Lucifurr" }, { category: "female", age: "3", likesKids: true, name: "Meowly Cyrus" }];
+
+  var CatRow = function (_React$Component) {
+    _inherits(CatRow, _React$Component);
+
+    function CatRow() {
+      _classCallCheck(this, CatRow);
+
+      return _possibleConstructorReturn(this, (CatRow.__proto__ || Object.getPrototypeOf(CatRow)).apply(this, arguments));
+    }
+
+    _createClass(CatRow, [{
+      key: 'render',
+      value: function render() {
+        var name = this.props.kitty.likesKids ? this.props.kitty.name : _react2.default.createElement(
+          'span',
+          { style: { color: 'red' } },
+          ' ',
+          this.props.kitty.name
+        );
+        return _react2.default.createElement(
+          'tr',
+          null,
+          ' ',
+          _react2.default.createElement(
+            'td',
+            null,
+            name
+          ),
+          ' ',
+          _react2.default.createElement(
+            'td',
+            null,
+            this.props.kitty.cena
+          )
+        );
+      }
+    }]);
+
+    return CatRow;
+  }(_react2.default.Component);
+
+  var CatCategoryRow = function (_React$Component2) {
+    _inherits(CatCategoryRow, _React$Component2);
+
+    function CatCategoryRow() {
+      _classCallCheck(this, CatCategoryRow);
+
+      return _possibleConstructorReturn(this, (CatCategoryRow.__proto__ || Object.getPrototypeOf(CatCategoryRow)).apply(this, arguments));
+    }
+
+    _createClass(CatCategoryRow, [{
+      key: 'render',
+      value: function render() {
+        return _react2.default.createElement(
+          'tr',
+          null,
+          ' ',
+          _react2.default.createElement(
+            'th',
+            { colSpan: '2' },
+            this.props.category
+          )
+        );
+      }
+    }]);
+
+    return CatCategoryRow;
+  }(_react2.default.Component);
+
+  var CatTable = function (_React$Component3) {
+    _inherits(CatTable, _React$Component3);
+
+    function CatTable() {
+      _classCallCheck(this, CatTable);
+
+      return _possibleConstructorReturn(this, (CatTable.__proto__ || Object.getPrototypeOf(CatTable)).apply(this, arguments));
+    }
+
+    _createClass(CatTable, [{
+      key: 'render',
+      value: function render() {
+        var rows = [];
+        var lastCategory = null;
+        this.props.kitties.forEach(function (kitty) {
+          if (kitty.category !== lastCategory) {
+            rows.push(_react2.default.createElement(CatCategoryRow, { category: kitty.category, key: kitty.category }));
+          }
+          rows.push(_react2.default.createElement(CatRow, { kitty: kitty, key: kitty.name }));
+          lastCategory = kitty.category;
+        });
+        return _react2.default.createElement(
+          'table',
+          null,
+          _react2.default.createElement(
+            'thead',
+            null,
+            _react2.default.createElement(
+              'tr',
+              null,
+              _react2.default.createElement(
+                'th',
+                null,
+                'Name'
+              ),
+              _react2.default.createElement(
+                'th',
+                null,
+                'Age'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'tbody',
+            null,
+            rows
+          )
+        );
+      }
+    }]);
+
+    return CatTable;
+  }(_react2.default.Component);
+
+  var SearchBar = function (_React$Component4) {
+    _inherits(SearchBar, _React$Component4);
+
+    function SearchBar() {
+      _classCallCheck(this, SearchBar);
+
+      return _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).apply(this, arguments));
+    }
+
+    _createClass(SearchBar, [{
+      key: 'render',
+      value: function render() {
+        return _react2.default.createElement(
+          'form',
+          null,
+          _react2.default.createElement('input', { type: 'text', placeholder: 'Search...' }),
+          _react2.default.createElement(
+            'p',
+            null,
+            _react2.default.createElement('input', { type: 'checkbox' }),
+            'Only show kitties that likes kids.'
+          )
+        );
+      }
+    }]);
+
+    return SearchBar;
+  }(_react2.default.Component);
+
+  var App = function (_React$Component5) {
+    _inherits(App, _React$Component5);
+
+    function App(props) {
+      _classCallCheck(this, App);
+
+      var _this5 = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+      _this5.state = {
+        filterText: "",
+        likesKids: false
+      };
+      return _this5;
+    }
+
+    _createClass(App, [{
+      key: 'render',
+      value: function render() {
+        return _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(CatTable, { kitties: this.props.kitties, filterText: this.state.filterText, likesKids: this.state.likesKids }),
+          _react2.default.createElement(SearchBar, { filterText: this.state.filterText, likesKids: this.state.likesKids })
+        );
+      }
+    }]);
+
+    return App;
+  }(_react2.default.Component);
+
+  _reactDom2.default.render(_react2.default.createElement(App, { kitties: kitties }), document.getElementById('container'));
 });
 
 /***/ }),
