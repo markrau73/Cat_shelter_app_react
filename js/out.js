@@ -9956,7 +9956,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       _this6.changeLikes = function (event) {
         _this6.setState({
-          likeKids: _this6.state.likeKids ? false : true
+          likesKids: _this6.state.likesKids ? false : true
         });
       };
 

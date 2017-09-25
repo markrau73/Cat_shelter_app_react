@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
       changeLikes = (event) => {
         this.setState ({
-          likeKids: this.state.likeKids ? false : true
+          likesKids: this.state.likesKids ? false : true
         })
       }
 
