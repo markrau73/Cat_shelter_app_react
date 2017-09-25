@@ -9809,14 +9809,14 @@ document.addEventListener('DOMContentLoaded', function () {
           ' ',
           _react2.default.createElement(
             'td',
-            null,
+            { className: 'red' },
             name
           ),
           ' ',
           _react2.default.createElement(
             'td',
-            null,
-            this.props.kitty.cena
+            { className: 'red' },
+            this.props.kitty.age
           )
         );
       }
@@ -9843,7 +9843,7 @@ document.addEventListener('DOMContentLoaded', function () {
           ' ',
           _react2.default.createElement(
             'th',
-            { colSpan: '2' },
+            { className: 'turquoise', colSpan: '2' },
             this.props.category
           )
         );
@@ -9865,18 +9865,22 @@ document.addEventListener('DOMContentLoaded', function () {
     _createClass(CatTable, [{
       key: 'render',
       value: function render() {
+        var _this4 = this;
+
         var rows = [];
         var lastCategory = null;
         this.props.kitties.forEach(function (kitty) {
-          if (kitty.category !== lastCategory) {
-            rows.push(_react2.default.createElement(CatCategoryRow, { category: kitty.category, key: kitty.category }));
+          if (_this4.props.filterText !== '' && kitty.name.indexOf(_this4.props.filterText) !== -1 && (kitty.likesKids === _this4.props.likesKids || _this4.props.likesKids === false)) {
+            if (kitty.category !== lastCategory) {
+              rows.push(_react2.default.createElement(CatCategoryRow, { category: kitty.category, key: kitty.category }));
+            }
+            rows.push(_react2.default.createElement(CatRow, { kitty: kitty, key: kitty.name }));
+            lastCategory = kitty.category;
           }
-          rows.push(_react2.default.createElement(CatRow, { kitty: kitty, key: kitty.name }));
-          lastCategory = kitty.category;
         });
         return _react2.default.createElement(
           'table',
-          null,
+          { className: 'green' },
           _react2.default.createElement(
             'thead',
             null,
@@ -9921,13 +9925,13 @@ document.addEventListener('DOMContentLoaded', function () {
       value: function render() {
         return _react2.default.createElement(
           'form',
-          null,
-          _react2.default.createElement('input', { type: 'text', placeholder: 'Search...' }),
+          { className: 'blue' },
+          _react2.default.createElement('input', { value: this.props.filterText, onChange: this.props.changeText, type: 'text', placeholder: 'Search...' }),
           _react2.default.createElement(
             'p',
             null,
-            _react2.default.createElement('input', { type: 'checkbox' }),
-            'Only show kitties that likes kids.'
+            _react2.default.createElement('input', { defaultChecked: this.props.likesKids, onClick: this.props.changeLikes, type: 'checkbox' }),
+            'Only show kitties that like kids.'
           )
         );
       }
@@ -9942,13 +9946,25 @@ document.addEventListener('DOMContentLoaded', function () {
     function App(props) {
       _classCallCheck(this, App);
 
-      var _this5 = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+      var _this6 = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-      _this5.state = {
+      _this6.changeText = function (event) {
+        _this6.setState({
+          filterText: event.target.value
+        });
+      };
+
+      _this6.changeLikes = function (event) {
+        _this6.setState({
+          likeKids: _this6.state.likeKids ? false : true
+        });
+      };
+
+      _this6.state = {
         filterText: "",
         likesKids: false
       };
-      return _this5;
+      return _this6;
     }
 
     _createClass(App, [{
@@ -9956,9 +9972,9 @@ document.addEventListener('DOMContentLoaded', function () {
       value: function render() {
         return _react2.default.createElement(
           'div',
-          null,
-          _react2.default.createElement(CatTable, { kitties: this.props.kitties, filterText: this.state.filterText, likesKids: this.state.likesKids }),
-          _react2.default.createElement(SearchBar, { filterText: this.state.filterText, likesKids: this.state.likesKids })
+          { className: 'yellow' },
+          _react2.default.createElement(SearchBar, { filterText: this.state.filterText, likesKids: this.state.likesKids, changeText: this.changeText, changeLikes: this.changeLikes }),
+          _react2.default.createElement(CatTable, { kitties: this.props.kitties, filterText: this.state.filterText, likesKids: this.state.likesKids })
         );
       }
     }]);
