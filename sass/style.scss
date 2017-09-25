@@ -12,3 +12,25 @@ turquoise:#40e0d0
     border: 2px solid $color;
   }
 }
+
+.yellow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  margin-top: 20px;
+}
+
+.blue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 25px;
+  width: 50%;
+}
+
+.green {
+  width: 20%;
+}
