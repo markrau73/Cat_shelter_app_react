@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
       render(){
         return <div className= 'yellow'>
+                <p> Cats names: Fidel Castro, Hairy Potter, Grumpy, Jude Paw, Lucifurr, Meowly Cyrus.</p>
                 <SearchBar filterText={this.state.filterText} likesKids={this.state.likesKids} onChange={this.changeText} onClick={this.changeLikes}/>
                 <CatTable kitties={this.props.kitties} filterText={this.state.filterText} likesKids={this.state.likesKids}/>
               </div>
