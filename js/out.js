@@ -9898,8 +9898,8 @@ var SearchBar = function (_React$Component) {
     value: function render() {
       return _react2.default.createElement(
         'form',
-        { className: 'blue' },
-        _react2.default.createElement('input', { value: this.props.filterText, onChange: this.props.onChange, type: 'text', placeholder: 'Search...' }),
+        { className: 'blue', style: { backgroundColor: 'lightgrey' } },
+        _react2.default.createElement('input', { value: this.props.filterText, onChange: this.props.onChange, type: 'text', placeholder: 'Search using cat\'s name...' }),
         _react2.default.createElement(
           'p',
           null,
